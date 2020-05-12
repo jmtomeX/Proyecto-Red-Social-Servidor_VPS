@@ -1,0 +1,125 @@
+<div class="column">
+  <h1 class="ui center aligned font-title">
+    {{ title }}
+  </h1>
+    <div class="loading" *ngIf="loading">
+      <img src="../../../assets/images/loading.gif" alt="" />
+    </div>
+  <div class="ui large feed" *ngFor="let publication of publications">
+    <div class="event">
+      <div class="label">
+        <img
+          *ngIf="publication.user.image"
+          class="ui small circular image"
+          src="{{ url + 'get-image-user/' + publication.user.image }}"
+        />
+        <img
+          *ngIf="!publication.user.image"
+          class="ui small circular image"
+          src="../../../assets/images/coronavirus.png"
+        />
+      </div>
+      <div class="content">
+        <div class="summary">
+          <a class="user font-title">
+            {{ publication.user.name + " " + publication.user.surname }}
+          </a>
+        </div>
+        <div class="content">
+          <div class="summary">
+            <span *ngIf="publication.user.nick == identity.nick">
+              Has
+            </span>
+            <span *ngIf="publication.user.nick != identity.nick">
+              Ha
+            </span>
+            añadido una nueva publicación
+            <div class="date">
+              {{
+                publication.created_at | amFromUnix | amLocale: "es" | amTimeAgo
+              }}
+            </div>
+          </div>
+          <div class="extra text">
+            {{ publication.text }}
+          </div>
+          <div class="two column row">
+            <!-- Imagen publicación -->
+            <div class="column publication" *ngIf="publication.file != 'null'">
+              <div class="summary">
+                <a>Momento congeledo</a>
+              </div>
+              <div class="extra images">
+                <a
+                  class="test-popup-link image-popup-vertical-fit"
+                  href="{{ url + 'get-image-pub/' + publication.file }}"
+                  title="Click para ver imagen"
+                  ><img src="{{ url + 'get-image-pub/' + publication.file }}"
+                /></a>
+              </div>
+            </div>
+            <!-- Botón borrar -->
+            <div
+              class="column btn-delete-pub"
+              *ngIf="publication.user._id == identity._id"
+            >
+              <div class="ui left labeled button" tabindex="0">
+                <div class="ui basic right pointing label">
+                  {{ stats.publications }}
+                </div>
+                <button
+                  id="{{ publication._id }}"
+                  class="btn-delet ui red button"
+                  (click)="showmodal($event)"
+                >
+                  <i class="trash icon"></i> Borrar
+                </button>
+              </div>
+            </div>
+            <!-- fin Botón borrar -->
+            <!-- Modal -->
+            <div class="ui modal" id="mod{{ publication._id }}">
+              <i class="close icon"></i>
+              <div class="header">
+                Borrar Publicación
+              </div>
+              <div class="image content">
+                <div class="ui medium image">
+                  <img src="{{ url + 'get-image-pub/' + publication.file }}" />
+                </div>
+                <div class="description">
+                  <div class="ui header">
+                    ¿Estás seguro que deseas eliminar la publicación?
+                  </div>
+                  <p>Si la eliminas no podras volver a recuperarla.</p>
+                  <p class="p-modal">{{ publication.text }}</p>
+                </div>
+              </div>
+              <div class="actions">
+                <div class="ui positive deny button">
+                  Cancelar
+                </div>
+                <div
+                  class="ui red right labeled icon button"
+                  (click)="deletePublication(publication._id)"
+                >
+                  Eliminar
+                  <i class="checkmark icon"></i>
+                </div>
+              </div>
+            </div>
+            <!-- Fin Modal -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui hidden divider"></div>
+  <div class="ui" *ngIf="publications && publications.length">
+    <div class="ui middle aligned center aligned grid" *ngIf="!noMore">
+      <button class="ui red basic button" (click)="viewMore()">
+        Más publicaciones
+      </button>
+    </div>
+  </div>
+</div>
