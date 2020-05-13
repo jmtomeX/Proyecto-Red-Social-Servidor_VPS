@@ -28,7 +28,7 @@ import { FollowingComponent } from './components/following/following.component';
 import { FollowedComponent } from './components/followed/followed.component';
 import { SearchComponent } from './components/search/search.component';
 // Hash location para las rutas en producción.
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+//import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 
@@ -61,10 +61,10 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
   providers: [
     UserService,
      UserGuard,
-     {
-       provide: LocationStrategy,
-       useClass: HashLocationStrategy
-     }
+    //  {
+    //    provide: LocationStrategy,
+    //    useClass: HashLocationStrategy
+    //  }
   ],
   bootstrap: [AppComponent]
 })

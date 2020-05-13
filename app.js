@@ -32,12 +32,23 @@ app.use((req, res, next) => {
 
 //rutas
 // ruta para producción, entra el la carpeta client de producción de angular.
-app.use(express.static(path.join(__dirname, 'client')), );
+// Con esta manera se le pone un hastag a la url y queda url no amigable
+//app.use(express.static(path.join(__dirname, 'client')), );
+
+// entrar a la carpeta client sin que redireccione, de producción de angular. en vez de la llamada de arriba comentada.
+app.use(express.static('client', {redirect:false}))
 // sobreiscribe la url 
 app.use('/api', user_routes);
 app.use('/api', follow_routes);
 app.use('/api', publication_routes);
 app.use('/api', messages_routes);
+
+// reescribir las urls virtuales para que la app de angular active el refresco de su página interna
+// '*' cualquier url por get
+app.get('*', function(req, res, next){
+    // cuando cargue cualquier ruta que no sea una de las de arriba, coge automanticamente lo que se tiene en la url
+    res.sendFile(path.resolve('client/index.html'));
+})
 
 //exportar
 module.exports = app;
