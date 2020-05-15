@@ -1,5 +1,5 @@
 "use strict";
-var User = require("../models/user");
+var User = require("../models/User");
 var Follow = require("../models/Follow");
 var Publication = require("../models/Publication");
 
