@@ -8,7 +8,7 @@ mongoose.set("useFindAndModify", false);
 // para conectar a mongoose
 
 mongoose
-  .connect("//iremti2:HJ1aKts8hlxrYi6U@cluster0-shard-00-00-kq94q.mongodb.net:27017,cluster0-shard-00-01-kq94q.mongodb.net:27017,cluster0-shard-00-02-kq94q.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority", {
+  .connect("//mongodb+srv://iremti2:HJ1aKts8hlxrYi6U@cluster0-kq94q.mongodb.net/test?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
