@@ -2,7 +2,7 @@
 "use strict";
 const mongoose = require("mongoose");
 const app = require("./app");
-const port = proccess.env.PORT || 3789;
+const port = proccess.env.PORT || 3000;
 // utizamos las promesas para conectarnos mediante promesas
 mongoose.Promise = global.Promise;
 mongoose.set('useFindAndModify', false);
