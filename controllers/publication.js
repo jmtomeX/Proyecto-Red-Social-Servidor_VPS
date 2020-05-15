@@ -5,9 +5,9 @@ var moment = require("moment");
 var mongoosePaginate = require("mongoose-pagination");
 
 // cargar modelos
-var Publication = require("../models/publication");
-var User = require("../models/user");
-var Follow = require("../models/follow");
+var Publication = require("../models/Publication");
+var User = require("../models/User");
+var Follow = require("../models/Follow");
 
 function prueba(req, res) {
   res.status(200).send({

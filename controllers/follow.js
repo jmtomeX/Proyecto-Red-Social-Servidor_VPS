@@ -3,8 +3,8 @@
 var mongoosePaginate = require("mongoose-pagination");
 
 // cargar modelos
-var User = require("../models/user");
-var Follow = require("../models/follow");
+var User = require("../models/User");
+var Follow = require("../models/Follow");
 
 function prueba(req, res) {
   res.status(200).send({

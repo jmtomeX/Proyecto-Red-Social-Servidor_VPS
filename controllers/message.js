@@ -3,9 +3,9 @@ const moment = require("moment");
 var mongoosePaginate = require("mongoose-pagination");
 
 // cargar modelos
-var Message = require("../models/message");
-var User = require("../models/user");
-var Follow = require("../models/follow");
+var Message = require("../models/Message");
+var User = require("../models/User");
+var Follow = require("../models/Follow");
 
 function probandoMensaje(req, res) {
   res.status(200).send({

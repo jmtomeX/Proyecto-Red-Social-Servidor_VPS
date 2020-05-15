@@ -1,7 +1,7 @@
 "use strict";
 var User = require("../models/user");
-var Follow = require("../models/follow");
-var Publication = require("../models/publication");
+var Follow = require("../models/Follow");
+var Publication = require("../models/Publication");
 
 const bcrypt = require("bcrypt-nodejs");
 const jwt = require("../services/jwt");

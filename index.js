@@ -2,7 +2,7 @@
 "use strict";
 const mongoose = require("mongoose");
 const app = require("./app");
-const port = 3000;
+const port = proccess.env.PORT || 3789;
 // utizamos las promesas para conectarnos mediante promesas
 mongoose.Promise = global.Promise;
 mongoose.set('useFindAndModify', false);
@@ -19,7 +19,7 @@ mongoose
 
     // crear servidor
     app.listen(port, () => {
-      console.log("Servidor corriendo en el puerto http://localhost:3000");
+      console.log("Servidor corriendo correctamente");
     });
   })
   .catch(err => console.log(err));
