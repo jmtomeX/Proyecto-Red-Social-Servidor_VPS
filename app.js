@@ -53,6 +53,7 @@ app.use('/api', messages_routes);
 
 app.get('*', function (req, res) {
     const index = path.join(__dirname, 'client', 'index.html');
+    console.log(index);
     res.sendFile(index);
   });
 
