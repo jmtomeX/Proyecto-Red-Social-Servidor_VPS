@@ -45,10 +45,16 @@ app.use('/api', messages_routes);
 
 // reescribir las urls virtuales para que la app de angular active el refresco de su página interna
 // '*' cualquier url por get
-app.get('*', function(req, res, next){
-    // cuando cargue cualquier ruta que no sea una de las de arriba, coge automanticamente lo que se tiene en la url
-    res.sendFile(path.resolve('client/index.html'));
-})
+// app.get('*', function(req, res, next){
+//     // cuando cargue cualquier ruta que no sea una de las de arriba, coge automanticamente lo que se tiene en la url
+//     res.sendFile(path.resolve('client/index.html'));
+// });
+
+
+app.get('*', function (req, res) {
+    const index = path.join(__dirname, 'client', 'index.html');
+    res.sendFile(index);
+  });
 
 //exportar
 module.exports = app;
