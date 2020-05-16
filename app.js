@@ -38,7 +38,7 @@ app.use((req, res, next) => {
 //app.use(express.static(path.join(__dirname, 'client')), );
 
 // entrar a la carpeta client sin que redireccione, de producción de angular. en vez de la llamada de arriba comentada.
-//app.use(express.static('client', {redirect:false}))
+app.use(express.static('client', {redirect:false}))
 // sobreiscribe la url 
 app.use('/api', user_routes);
 app.use('/api', follow_routes);
