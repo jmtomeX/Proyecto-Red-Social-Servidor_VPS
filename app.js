@@ -6,19 +6,13 @@ const app = express();
 const bodyParser = require("body-parser");
 // acceder a ficheros
 const path = require('path');
-const cors = require('cors');
-const config = require('./config');
+
 //cargar rutas
 // cargar la configuración de rutas del user
 const user_routes = require('./routes/user');
 const follow_routes = require('./routes/follow');
 const publication_routes = require('./routes/publication');
 const messages_routes = require('./routes/messages');
-
-
-app.use(cors(
-  config.application.cors.server
-));
 
 //middelwares
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -29,7 +23,7 @@ app.use(bodyParser.json());
 //https://victorroblesweb.es/2017/11/09/configurar-cabeceras-acceso-cors-en-nodejs/
 // configurar cabeceras http, sirve para poder hacer peticiones entre dominios de manera cruzada
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://coronavirusmetting.herokuapp.com');
+    res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
    // res.header('Access-Control-Allow-Headers', 'token, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
@@ -59,7 +53,7 @@ app.use('/api', messages_routes);
 // });
 
 
-app.get('*', function (req, res) {
+app.get('*', function (req, res,next) {
     const index = path.join(__dirname, 'client', 'index.html');
     res.sendFile(index);
   });
