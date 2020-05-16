@@ -52,9 +52,6 @@ app.use('/api', messages_routes);
 
 
 app.get('*', function (req, res) {
-    // if(req.headers['x-forwarded-proto'] != 'https'){
-  //   res.redirect('https://coronavirusmetting.herokuapp.com/'+req.url);
-  // } else next();
     const index = path.join(__dirname, 'client', 'index.html');
     res.sendFile(index);
   });
