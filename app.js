@@ -43,7 +43,11 @@ app.use((req, res, next) => {
 
 // entrar a la carpeta client sin que redireccione, de producción de angular. en vez de la llamada de arriba comentada.
 app.use(express.static("client", { redirect: false }));
-
+// sobreiscribe la url
+//app.use("/api", user_routes);
+app.use("/api", follow_routes);
+app.use("/api", publication_routes);
+app.use("/api", messages_routes);
 
 // reescribir las urls virtuales para que la app de angular active el refresco de su página interna
 // '*' cualquier url por get
@@ -67,12 +71,6 @@ app.get("*", function (req, res, next) {
   // const index = path.join(__dirname, "client", "index.html");
   // res.sendFile(index);
 });
-// sobreiscribe la url
-app.use("/api", user_routes);
-app.use("/api", follow_routes);
-app.use("/api", publication_routes);
-app.use("/api", messages_routes);
-
 
 //exportar
 module.exports = app;
