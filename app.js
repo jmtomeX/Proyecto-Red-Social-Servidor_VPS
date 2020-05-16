@@ -55,6 +55,7 @@ app.use("/api", messages_routes);
 
 app.get("*", function (req, res, next) {
   if (req.headers["x-forwarded-proto"] != "https") {
+    console.log(" ------------------------------- Entrado en *"  + req.headers["x-forwarded-proto"] );
     res.redirect("https://coronavirusmetting.herokuapp.com/" + req.url);
   } else next();
   const index = path.join(__dirname, "client", "index.html");
