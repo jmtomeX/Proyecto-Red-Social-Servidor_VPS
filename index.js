@@ -1,5 +1,7 @@
 // conexion a mongod y creación del server.
 "use strict";
+// var http = require('http');
+// var https = require('https');
 const mongoose = require("mongoose");
 const app = require("./app");
 // utizamos las promesas para conectarnos mediante promesas
@@ -19,6 +21,7 @@ mongoose
     // settings
     // obtener el puerto si el servidor da un puerto se utiliza, si no usa el 3000
     app.set("port", process.env.PORT || 3000);
+    app.use(express.logger());
    
     // crear servidor
     // app.listen(port, () => {
