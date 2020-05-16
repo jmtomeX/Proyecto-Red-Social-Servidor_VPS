@@ -22,22 +22,15 @@ app.use(bodyParser.json());
 //Cors
 //https://victorroblesweb.es/2017/11/09/configurar-cabeceras-acceso-cors-en-nodejs/
 // configurar cabeceras http, sirve para poder hacer peticiones entre dominios de manera cruzada
-
-app.use(function(req, res, next) {
-res.header("Access-Control-Allow-Origin", "*");
-res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-next();
-});
-
-// app.use((req, res, next) => {
-//     res.header('Access-Control-Allow-Origin', '*');
-//     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-//    // res.header('Access-Control-Allow-Headers', 'token, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-//     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-//     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+   // res.header('Access-Control-Allow-Headers', 'token, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
  
-//     next();
-// });
+    next();
+});
 
 //rutas
 // ruta para producción, entra el la carpeta client de producción de angular.
@@ -45,7 +38,7 @@ next();
 //app.use(express.static(path.join(__dirname, 'client')), );
 
 // entrar a la carpeta client sin que redireccione, de producción de angular. en vez de la llamada de arriba comentada.
-app.use(express.static('client', {redirect:false}))
+//app.use(express.static('client', {redirect:false}))
 // sobreiscribe la url 
 app.use('/api', user_routes);
 app.use('/api', follow_routes);
