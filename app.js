@@ -62,16 +62,14 @@ app.get("*", function (req, res, next) {
     //   res.redirect("https://coronavirusmetting.herokuapp.com/" + req.url);
     // } else next();
     
-    if (req.header('x-forwarded-proto') !== 'https') {
+
   console.log(" ------------------------------- Entrado en *"  + req.headers["x-forwarded-proto"] );
 
-    res.redirect(`https://${req.header('Host')}${req.url}`)
-  } else {
-    next();
-  }
+    res.redirect(`https://${req.header('Host')}${req.url}`);
 
-  const index = path.join(__dirname, "client", "index.html");
-  res.sendFile(index);
+
+  // const index = path.join(__dirname, "client", "index.html");
+  // res.sendFile(index);
 });
 
 //exportar
