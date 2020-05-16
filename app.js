@@ -63,7 +63,7 @@ app.get("*", function (req, res, next) {
     // } else next();
     
 
-  console.log(" ------------------------------- Entrado en *"  + req.headers["x-forwarded-proto"] );
+  console.log(" ------------------------------- Entrado en *"  + req.url );
 
     res.redirect(`https://${req.header('Host')}${req.url}`);
 
