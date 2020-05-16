@@ -6,6 +6,8 @@ const app = express();
 const bodyParser = require("body-parser");
 // acceder a ficheros
 const path = require("path");
+
+var sslRedirect = require('heroku-ssl-redirect');
 //cargar rutas
 // cargar la configuración de rutas del user
 const user_routes = require("./routes/user");
@@ -16,6 +18,8 @@ const messages_routes = require("./routes/messages");
 app.use(bodyParser.urlencoded({ extended: false }));
 // para que convierta a json cada petición a nuestro backend
 app.use(bodyParser.json());
+
+app.use(sslRedirect());
 
 //Cors
 //https://victorroblesweb.es/2017/11/09/configurar-cabeceras-acceso-cors-en-nodejs/
@@ -54,11 +58,11 @@ app.use("/api", messages_routes);
 // });
 
 app.get("*", function (req, res, next) {
-  console.log(" ------------------------------- Entrando "  + req.url );
-  if (req.headers["x-forwarded-proto"] != "https") {
-    console.log(" ------------------------------- Entrado en *"  + req.headers["x-forwarded-proto"] );
-    res.redirect("https://coronavirusmetting.herokuapp.com/" + req.url);
-  } else next();
+
+  // if (req.headers["x-forwarded-proto"] != "https") {
+  //   console.log(" ------------------------------- Entrado en *"  + req.headers["x-forwarded-proto"] );
+  //   res.redirect("https://coronavirusmetting.herokuapp.com/" + req.url);
+  // } else next();
   const index = path.join(__dirname, "client", "index.html");
   res.sendFile(index);
 });
