@@ -54,6 +54,7 @@ app.use("/api", messages_routes);
 // });
 
 app.get("*", function (req, res, next) {
+  console.log(" ------------------------------- Entrando "  + req.url );
   if (req.headers["x-forwarded-proto"] != "https") {
     console.log(" ------------------------------- Entrado en *"  + req.headers["x-forwarded-proto"] );
     res.redirect("https://coronavirusmetting.herokuapp.com/" + req.url);
