@@ -21,7 +21,7 @@ mongoose
     // settings
     // obtener el puerto si el servidor da un puerto se utiliza, si no usa el 3000
     app.set("port", process.env.PORT || 3000);
-    app.use(express.logger());
+    //app.use(express.logger());
    
     // crear servidor
     // app.listen(port, () => {
