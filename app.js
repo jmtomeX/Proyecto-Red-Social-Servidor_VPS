@@ -30,9 +30,7 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Headers",
     "Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method"
   );
-  // res.header('Access-Control-Allow-Headers', 'token, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-  //res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-  res.header("Access-Control-Allow-Methods", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   res.header("Allow", "GET, POST, OPTIONS, PUT, DELETE");
 
   next();
@@ -61,9 +59,17 @@ app.use("/api", messages_routes);
 app.get("*", function (req, res, next) {
 
   // if (req.headers["x-forwarded-proto"] != "https") {
-  //   console.log(" ------------------------------- Entrado en *"  + req.headers["x-forwarded-proto"] );
-  //   res.redirect("https://coronavirusmetting.herokuapp.com/" + req.url);
-  // } else next();
+    //   res.redirect("https://coronavirusmetting.herokuapp.com/" + req.url);
+    // } else next();
+    
+    if (req.header('x-forwarded-proto') !== 'https') {
+  console.log(" ------------------------------- Entrado en *"  + req.headers["x-forwarded-proto"] );
+
+    res.redirect(`https://${req.header('Host')}${req.url}`)
+  } else {
+    next();
+  }
+
   const index = path.join(__dirname, "client", "index.html");
   res.sendFile(index);
 });
