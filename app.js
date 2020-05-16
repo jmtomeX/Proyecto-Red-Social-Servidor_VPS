@@ -29,8 +29,7 @@ app.use(bodyParser.json());
 //https://victorroblesweb.es/2017/11/09/configurar-cabeceras-acceso-cors-en-nodejs/
 // configurar cabeceras http, sirve para poder hacer peticiones entre dominios de manera cruzada
 app.use((req, res, next) => {
-    //res.header('Access-Control-Allow-Origin', 'https://coronavirusmetting.herokuapp.com');
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', 'https://coronavirusmetting.herokuapp.com');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
    // res.header('Access-Control-Allow-Headers', 'token, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
