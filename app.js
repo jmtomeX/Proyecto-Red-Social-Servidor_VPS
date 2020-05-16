@@ -6,12 +6,18 @@ const app = express();
 const bodyParser = require("body-parser");
 // acceder a ficheros
 const path = require('path');
+const cors = require('cors');
 //cargar rutas
 // cargar la configuración de rutas del user
 const user_routes = require('./routes/user');
 const follow_routes = require('./routes/follow');
 const publication_routes = require('./routes/publication');
 const messages_routes = require('./routes/messages');
+
+app.use(cors(
+  config.application.cors.server
+));
+
 //middelwares
 app.use(bodyParser.urlencoded({ extended: false }));
 // para que convierta a json cada petición a nuestro backend
