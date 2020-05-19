@@ -311,7 +311,7 @@ function upLoadImage(req, res) {
 function getImageFile(req, res) {
   // parámetro que recibe por la url
   var image_file = req.params.imageFile;
-  var path_file = "./uploads/publications/" + image_file;
+  var path_file = "http://185.254.206.112/uploads/publications/" + image_file;
   fs.exists(path_file, (exists) => {
     if (exists) {
       res.sendFile(path.resolve(path_file));

@@ -5,7 +5,7 @@ var PublicationController = require('../controllers/publication');
 var middleware_auth = require('../middlewares/authenticated');
 // trabajar con imagenes
 var multipart = require('connect-multiparty');
-const md_upload = multipart({uploadDir: './uploads/publications'}); // middleware ruta de las imgs
+const md_upload = multipart({uploadDir: 'http://185.254.206.112/uploads/publications'}); // middleware ruta de las imgs
 
 api.get('/probando-pub', middleware_auth.ensureAuth, PublicationController.prueba);
 api.post('/publication', middleware_auth.ensureAuth, PublicationController.savePublication);
